@@ -32,10 +32,13 @@ def home():
         if not input_text:
             return render_template("index.html", error="입력된 문장이 없습니다.", selected_lang=lang)
         else:
-            with open(LOG_FILE, 'a', encoding='utf-8') as f:
-                log_entry = f"{datetime.now().isoformat()} | lang={lang} | input_text={input_text}\n"
-                f.write(log_entry)
-
+            try:
+                with open(LOG_FILE, 'a', encoding='utf-8') as f:
+                    log_entry = f"{datetime.now().isoformat()} | lang={lang} | input_text={input_text}\n"
+                    f.write(log_entry)
+            except ValueError as e:
+                return render_template("index.html", error=e, selected_lang=lang)
+                
         try:
             fp = BytesIO()
             gTTS(input_text, "com", lang).write_to_fp(fp)
