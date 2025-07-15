@@ -47,20 +47,5 @@ def home():
 
     return render_template("index.html", selected_lang='ko')
 
-
-
-        # return Response(fp.getvalue(), mimetype='audio/mpeg') # 페이지 전달없이 바로 재생
-
-
-# @app.route("/sample", methods=['POST'])
-# def default_post():
-#     data = request.get_json()  # JSON 데이터 받아오기
-#     lang = data.get('lang')
-#     input_text = data.get('input_text')
-#     return jsonify({
-#         'message': f'Hello, {lang}. {input_text}.'
-#     }), 200
-
-
 if __name__ == '__main__':
     app.run('0.0.0.0', 80)
