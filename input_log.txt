@@ -1,3 +1,7 @@
 2025-07-15T22:03:38.820010 | lang=ko | input_text=뭐야이거!
 2025-07-15T22:03:48.979111 | lang=en | input_text=뭐야이거!
 2025-07-15T22:27:21.790083 | lang=ko | input_text=hello
+2025-07-15T22:34:14.968246 | lang=ko | input_text=나는 김도형
+2025-07-15T22:34:45.430350 | lang=ja | input_text=뭐야이거!
+2025-07-15T22:34:55.157940 | lang=ja | input_text=anata
+2025-07-15T22:35:05.990156 | lang=ja | input_text=bbagayaro
