@@ -1,0 +1,32 @@
+c4r10s1% ls
+david
+c4r10s1% git merge add-image
+Updating 1f60046..80dbe82
+Fast-forward
+ .vscode/launch.json                   |  25 +++++++++++++++++++++++++
+ curl.txt                              |   3 +++
+ david/__pycache__/app.cpython-310.pyc | Bin 714 -> 1904 bytes
+ david/app.py                          |  48 +++++++++++++++++++++++++++++++++++++++++-------
+ david/static/david.jpg                | Bin 0 -> 24580 bytes
+ david/templates/index.html            |  30 ++++++++++++++++++++++++++++++
+ input_log.txt                         |   8 ++++++++
+ merge_vs_rebase.md                    |  66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 8 files changed, 173 insertions(+), 7 deletions(-)
+ create mode 100644 .vscode/launch.json
+ create mode 100644 curl.txt
+ create mode 100644 david/static/david.jpg
+ create mode 100644 david/templates/index.html
+ create mode 100644 input_log.txt
+ create mode 100644 merge_vs_rebase.md
+c4r10s1% git add .
+c4r10s1% git commit -m "merge by add-image"
+On branch main
+Your branch is ahead of 'origin/main' by 9 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+c4r10s1% git push
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:giftof/cai-7.git
+   1f60046..80dbe82  main -> main
+c4r10s1% 
