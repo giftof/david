@@ -5,3 +5,4 @@
 2025-07-15T22:34:45.430350 | lang=ja | input_text=뭐야이거!
 2025-07-15T22:34:55.157940 | lang=ja | input_text=anata
 2025-07-15T22:35:05.990156 | lang=ja | input_text=bbagayaro
+2025-07-15T23:01:17.434991 | lang=ko | input_text=aaa
