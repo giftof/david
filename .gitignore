@@ -35,3 +35,6 @@ coverage.xml
 # 시스템 파일
 .DS_Store
 Thumbs.db
+
+# log-file
+input_log.txt
