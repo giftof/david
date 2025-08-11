@@ -5,6 +5,7 @@ import os
 from io import BytesIO
 from gtts import gTTS
 from enum import Enum
+import socket
 
 DEFAULT_LANG = os.getenv('DEFAULT_LANG', 'ko')
 app = Flask(__name__)
@@ -19,40 +20,45 @@ LOG_FILE = 'input_log.txt'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    if app.debug:
+        hostname = '컴퓨터(인스턴스) : ' + socket.gethostname()
+    else:
+        hostname = ' '
+    
     if request.method == 'GET':
-        return render_template("index.html")
+        return render_template("index.html", computername=hostname)
     
     if request.method == 'POST':
         input_text = request.form.get('input_text')
         lang = request.form.get('lang', 'ko')
 
         if lang not in [l.value for l in LANGS]:
-            return render_template("index.html", error=f"언어 설정 오류 received: [{lang}]", selected_lang='ko')
+            return render_template("index.html", error=f"언어 설정 오류 received: [{lang}]", selected_lang='ko', computername=hostname)
         
         if not input_text:
-            return render_template("index.html", error="입력된 문장이 없습니다.", selected_lang=lang)
+            return render_template("index.html", error="입력된 문장이 없습니다.", selected_lang=lang, computername=hostname)
         else:
             try:
                 with open(LOG_FILE, 'a', encoding='utf-8') as f:
                     log_entry = f"{datetime.now().isoformat()} | lang={lang} | input_text={input_text}\n"
                     f.write(log_entry)
             except ValueError as e:
-                return render_template("index.html", error=e, selected_lang=lang)
+                return render_template("index.html", error=e, selected_lang=lang, computername=hostname)
                 
         try:
             fp = BytesIO()
             gTTS(input_text, "com", lang).write_to_fp(fp)
             audio_data = base64.b64encode(fp.getvalue()).decode("utf-8")
         except ValueError as e:
-            return render_template("index.html", error=e, selected_lang=lang)
+            return render_template("index.html", error=e, selected_lang=lang, computername=hostname)
 
-        return render_template("index.html", audio=audio_data, selected_lang=lang)
+        return render_template("index.html", audio=audio_data, selected_lang=lang, computername=hostname)
 
-    return render_template("index.html", selected_lang='ko')
+    return render_template("index.html", selected_lang='ko', computername=hostname)
 
 @app.route("/menu", methods=['GET'])
 def menu():
     return render_template("menu.html")
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 80)
+    app.run('0.0.0.0', 80, debug=True)
