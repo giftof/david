@@ -50,6 +50,9 @@ def home():
 
     return render_template("index.html", selected_lang='ko')
 
+@app.route("/menu", methods=['GET'])
+def menu():
+    return render_template("menu.html")
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 80)
